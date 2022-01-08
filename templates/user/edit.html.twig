@@ -1,0 +1,13 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block main %}
+<div class="container col-6 d-flex align-items-center justify-content-center flex-column">
+    <h1>Edit {{ user.firstname }} {{ user.lastname }} profile</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('user/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container col-6 d-flex align-items-center justify-content-center flex-column">
+        {% if error %}
+            <div class="container alert alert-danger">{{ error }}</div>
+        {% endif %}
+        <h1>Register</h1>
+        <h2>Welcome to the new concept of Social Media!</h2>
+        {{ form_start(registrationForm) }}
+        {{ form_label(registrationForm.firstname) }}<br>
+        {{ form_widget(registrationForm.firstname) }}<br>
+        {{ form_label(registrationForm.lastname) }}<br>
+        {{ form_widget(registrationForm.lastname) }}<br>
+        {{ form_label(registrationForm.email) }}<br>
+        {{ form_widget(registrationForm.email) }}<br>
+        <label form="plainPassword">Password</label><br>
+        {{ form_widget(registrationForm.plainPassword) }}<br>
+        {{ form_label(registrationForm.birthname) }}<br>
+        {{ form_widget(registrationForm.birthname) }}<br>
+        {{ form_label(registrationForm.avatar) }}<br>
+        {{ form_widget(registrationForm.avatar) }}<br>
+        {{ form_row(registrationForm.agreeTerms) }}
+        <button type="submit" class="btn btn-primary boton">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
+{% endblock %}

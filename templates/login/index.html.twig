@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{# ... #}
+{% block stylesheets %}
+
+{% endblock %}
+{% block javascripts %}
+    <script src="../../public/js/login.js"></script>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div id="modal" title="Log In">
+            {% if error %}
+                <div class="container alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <form action="{{ path('login') }}" method="post">
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control" name="_password"/>
+                </div><br>
+                {# If you want to control the URL the user is redirected to on success
+        <input type="hidden" name="_target_path" value="/account"/> #}
+                <div class="center">
+                    <button type="submit" class="btn btn-primary boton">login</button>
+                </div>
+            </form>
+            <div class="center">
+                <p class="info">¿Aún no estás registrado? ¡Registrate ya!</p>
+                <a href="{{ path('register') }}" class="center"><button class="btn btn-primary boton">Registrarse</button></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

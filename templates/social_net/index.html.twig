@@ -1,0 +1,25 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}Hello SocialNetController!{% endblock %}
+
+{% block main %}
+    <div class="col-12 center newSection white"><h2>{% trans %}Select one of your Socialnets{% endtrans %}</h2></div>
+    <div class="container d-flex justify-content-center">
+    {% for social in socials %}
+        <div class="clicable">
+            <button class="transp" onclick="getSocial({{ social.id }})">
+                <img class="logoMedium" src="{{ asset('img/socialnet/') }}{{ social.image }}">
+            </button>
+            <p class="nameSocial family center upper">{{ social.name }}</p>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="container d-flex justify-content-center newSection">
+        <a href="{{ path('socialnet_base_new') }}"><p class="white">{% trans %}Add a new Socialnet{% endtrans %}</p></a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('js/socialnet.js') }}"></script>
+{% endblock %}

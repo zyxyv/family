@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+* {
+    overflow: hidden;
+}
+
+body {
+    background-color: #343a40;
+    color: #f5f5f5;
+}
+a{
+    text-decoration: none;
+}
+ul, li {
+    list-style: none;
+}
+
+/*
+BOTONES
+*/
+.boton {
+    background-color: #6c757d;
+    border: none;
+}
+
+.boton:hover, .boton:active {
+    background-color: #f58400;
+}
+
+/*
+POSICIONES
+ */
+.center {
+    text-align: center;
+}
+
+/*
+ESPECIFICOS
+ */
+p.family {
+    font-weight: bold;
+    font-family: 'Satisfy', sans-serif;
+}
+
+.low {
+    text-transform: lowercase;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.orange {
+    color: #f58400;
+}
+
+.white {
+    color: #e0e0e0;
+}
+
+.transp {
+    background-color: transparent;
+    border:none
+}
+
+.logoMedium {
+    width: 128px;
+    height: 128px;
+    border-radius: 8px;
+}
+.newSection {
+    margin-top: 1.5rem;
+}
+
+.infinite {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    overflow-x: auto;
+}
+
+.infinite::-webkit-scrollbar {
+    background-color: #f58400;
+    height: 4px;
+}
+
+.infinite li {
+    min-width: 200px;
+    border: 1px solid #f58400;
+    text-align: center;
+    color: #f58400;
+    font-weight: bold;
+    background-color: #f0f0f0;
+}

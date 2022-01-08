@@ -1,0 +1,11 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}New Socialnet{% endblock %}
+
+{% block main %}
+<div class="container col-6 d-flex align-items-center justify-content-center flex-column">
+    <h1>{% trans %}Create new Socialnet{% endtrans %}</h1>
+
+    {{ include('socialnet_base/_form.html.twig') }}
+</div>
+{% endblock %}
