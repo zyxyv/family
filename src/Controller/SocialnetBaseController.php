@@ -70,14 +70,17 @@ class SocialnetBaseController extends AbstractController
     }
 
     #[Route('/{id}', name: 'socialnet_base_delete', methods: ['POST'])]
-    public function delete(Request $request, Socialnet $socialnet, EntityManagerInterface $entityManager): Response
+    public function delete(Socialnet $socialnet, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$socialnet->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($socialnet);
-            $entityManager->flush();
-        }
+       $user = $this->getUser();
 
-        return $this->redirectToRoute('socialnet_base_index', [], Response::HTTP_SEE_OTHER);
+       $socialnet->removeUser($user);
+
+       $user->setActive(null);
+       $entityManager->flush();
+
+
+        return $this->redirectToRoute('social_net', [], Response::HTTP_SEE_OTHER);
     }
 }
 
