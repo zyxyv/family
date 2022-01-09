@@ -79,6 +79,18 @@ class SocialnetBaseController extends AbstractController
        $user->setActive(null);
        $entityManager->flush();
 
+        $query = "SELECT count(user_id) as count from socialnet_user WHERE socialnet_id = ".$socialnet->getId();
+        $rs = $entityManager->getConnection()->fetchAllAssociative($query);
+
+        if($rs[0]['count'] == 0)
+        {
+            if(file_exists('img/socialnet/'.$socialnet->getName().'.png'))
+            {
+                unlink('img/socialnet/'.$socialnet->getName().'.png');
+            }
+            $entityManager->remove($socialnet);
+            $entityManager->flush();
+        }
 
         return $this->redirectToRoute('social_net', [], Response::HTTP_SEE_OTHER);
     }
