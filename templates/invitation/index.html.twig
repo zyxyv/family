@@ -1,0 +1,27 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}Invitation{% endblock %}
+
+{% block main %}
+<div class="container-fluid col-xs-12 newSection content white">
+    <div class="row">
+    <div class="container col-xs-12 col-lg-6 d-flex justify-content-center">
+        <img class="detail" src="{{ asset('img/app/tucan.png') }}">
+    </div>
+    <div class="container col-xs-12 col-lg-6 d-flex justify-content-center center justify-align-item flex-column">
+        <p class="family content-text">{% trans %}Invita a todas las personas que quieras añadir a tu Socialnet{% endtrans %}</p>
+            <label for="emails" class="family">{% trans %}Emails{% endtrans %}</label><br>
+            <div class="col-xs-8 d-flex justify-content-center inputGroup">
+            <input name="emails" id="emails" type="text">
+            <button class="btn btn-primary boton noBorderLeft" onclick="passInvitations({{ social.id }})">{% trans %}Enviar{% endtrans %}</button>
+            </div>
+        <p class="family content-text">{% trans %}Ingresa tantas direcciones de email como quieras separadas por comas.{% endtrans %}</p>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('js/invitation.js') }}"></script>
+{% endblock %}
