@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Transport;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 
 class InvitationController extends AbstractController
 {
@@ -37,7 +39,7 @@ class InvitationController extends AbstractController
     /**
      * @Route("/passInvitation", options={"expose"=true}, name="passInvitation")
      */
-    public function getSocial(Request $request, EntityManagerInterface $em)
+    public function getSocial(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
     {
         if($request->isXmlHttpRequest())
         {
@@ -51,14 +53,13 @@ class InvitationController extends AbstractController
                 $invitation->setSocialnet($social);
                 $em->persist($invitation);
                 $em->flush();
-                $email = (new Email())
-                    ->setFrom('sdiaz@webimnpacto.es')
-                    ->setTo($dato)
-                    ->setSubject('Ha recibido una invitación para unirse a '.$social->getName())
-                    ->setTextBody('Ha recibido un ainvitación para unirse a la socialnet '.$social->getName().'. Abrase una cuenta con este correo en family y sescubra un nuevo mundo.');
+                /*$email = (new Email())
+                    ->from('sdiaz@webimnpacto.es')
+                    ->to($dato)
+                    ->subject('Ha recibido una invitación para unirse a '.$social->getName())
+                    ->text('Ha recibido un ainvitación para unirse a la socialnet '.$social->getName().'. Abrase una cuenta con este correo en family y sescubra un nuevo mundo.');
 
-                $transport = Transport::fromDsn('smtp://localhost');
-                $transport->send($email);
+                $mailer->send($email);*/
             }
 
 

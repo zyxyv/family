@@ -8,8 +8,11 @@ function passInvitations(social) {
                 social: social}),
         async: true,
         dataType: "json",
-        success: function (data) {
-            console.log(data['resp']);
+        success: function () {
+            const html = "<div class='container alert alert-success'>Invitaciones enviadas con exito.</div>";
+            const content = $('.content');
+            $('#emails').val('');
+            content.before(html);
         }
     })
 }
