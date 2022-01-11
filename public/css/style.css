@@ -1,90 +1,61 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-
-body {
-    background-color: #343a40;
-    color: #f5f5f5;
-}
-a{
-    text-decoration: none;
-}
-ul, li {
-    list-style: none;
-}
-
+body {background-color: #343a40;color: #f5f5f5;}
+a{text-decoration: none;}
+ul,li {list-style: none;}
 /*
 BOTONES
 */
 .boton {
     background-color: #6c757d;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     border: none;
 }
-
-.boton:hover, .boton:active {
-    background-color: #f58400;
-}
-
+.boton:hover,.boton:active{background-color: #f58400;}
 /*
 POSICIONES
  */
-.center {
-    text-align: center;
-}
-
+.center {text-align: center;}
+/*
+INPUTS
+ */
+.inputGroup input{margin: .5rem 0;}
+.inputGroup button{border-radius: 0 16px 16px 0;}
 /*
 ESPECIFICOS
  */
-p.family {
+.family {
     font-weight: bold;
     font-family: 'Satisfy', sans-serif;
 }
-
-.low {
-    text-transform: lowercase;
-}
-
-.upper {
-    text-transform: uppercase;
-}
-
-.orange {
-    color: #f58400;
-}
-
-.white {
-    color: #e0e0e0;
-}
-
+.low {text-transform:lowercase;}
+.upper {text-transform:uppercase;}
+.orange {color:#f58400;}
+.white {color:#e0e0e0;}
 .transp {
-    background-color: transparent;
+    background-color:transparent;
     border:none
 }
-
 .logoMedium {
     width: 128px;
     height: 128px;
     border-radius: 8px;
 }
-.newSection {
-    margin-top: 1.5rem;
-}
-
+.newSection {margin-top: 1.5rem;}
 .infinite {
     display: flex;
     justify-content: space-around;
     align-content: center;
     overflow-x: auto;
 }
-
-.infinite::-webkit-scrollbar {
-    background-color: #f58400;
-    height: 4px;
-}
-
+.infinite::-webkit-scrollbar {background-color: #f58400;height: 4px;}
 .infinite li {
     min-width: 200px;
     border: 1px solid #f58400;
     text-align: center;
     color: #f58400;
     font-weight: bold;
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
 }
+.content {background-color:#e0e0e0;color: #343a40;}
+.content-text {font-size: 1.25em;}

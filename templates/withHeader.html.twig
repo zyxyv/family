@@ -5,23 +5,25 @@
         <div class="container col-12">
             <div class="row">
             <div class="container center col-4 d-flex align-items-center">
-                <p><img style="border-radius: 16px" width="32px" height="32px" src="{{ asset('img/avatars/') }}{{ user.email }}.png"> {{ user.firstname }}
-                    <a href="{{ path('user_edit', {'id': user.id}) }}"><img width="24px" height="24px" src="{{ asset('img/app/config.png') }}"></a>
-                <a href="{{ path('app_logout') }}"><img width="24px" height="24px" src="{{ asset('img/app/logout.png') }}"></a></p>
+                <p><img style="border-radius: 16px" width="32px" height="32px" src="{{ asset('img/avatars/') }}{{ user.email }}.png" alt="avatar"> {{ user.firstname }}
+                    <a href="{{ path('user_edit', {'id': user.id}) }}"><img width="24px" height="24px" src="{{ asset('img/app/config.png') }}" alt="config"></a>
+                <a href="{{ path('app_logout') }}"><img width="24px" height="24px" src="{{ asset('img/app/logout.png') }}" alt="logout"></a></p>
             </div>
             <div class="container center col-4">
                 {% if social %}
-                    <p class="family white">{{ social.name }} <a href="{{ path('socialnet_base_edit', {'id':social.id}) }}"><img width="16px" height="16px" src="{{ asset('img/app/config.png') }}"></a></p>
-                        <a href="{{ path('social_net') }}"><img width="48px" height="48px" src="{{ asset('img/socialnet/') }}{{ social.name }}.png"></a>
+                    <p class="family white">{{ social.name }} <a href="{{ path('socialnet_base_edit', {'id':social.id}) }}"><img width="16px" height="16px" src="{{ asset('img/app/config.png') }}" alt="config"></a></p>
+                        <a href="{{ path('social_net') }}"><img width="48px" height="48px" src="{{ asset('img/socialnet/') }}{{ social.name }}.png" alt="socialnet"></a>
                 {% endif %}
             </div>
             <div class="container col-4 align-items-center d-flex justify-content-end">
-                <a href="{{ path('default') }}"><p class="family orange low">Family <img width="48px" height="48px" src="{{ asset('img/app/logo.png') }}"></p></a>
+                <a href="{{ path('default') }}"><p class="family orange low">Family <img width="48px" height="48px" src="{{ asset('img/app/logo.png') }}" alt="logo"></p></a>
             </div>
             </div>
         </div>
         <div class="infinite newSection">
-            <a href=""><li>{% trans %}Invitations{% endtrans %}</li></a>
+            <ul>
+                <li><a href="{{ path('invitation') }}">{% trans %}Invitations{% endtrans %}</a></li>
+            </ul>
         </div>
     {% endblock %}
     {% block main %}{% endblock %}

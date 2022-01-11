@@ -24,9 +24,13 @@ class Socialnet
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'socialnets')]
     private $user;
 
+    #[ORM\OneToMany(mappedBy: 'socialnet', targetEntity: Invitation::class, orphanRemoval: true)]
+    private $invitations;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->invitations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,6 +82,36 @@ class Socialnet
     public function removeUser(User $user): self
     {
         $this->user->removeElement($user);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Invitation[]
+     */
+    public function getInvitations(): Collection
+    {
+        return $this->invitations;
+    }
+
+    public function addInvitation(Invitation $invitation): self
+    {
+        if (!$this->invitations->contains($invitation)) {
+            $this->invitations[] = $invitation;
+            $invitation->setSocialnet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvitation(Invitation $invitation): self
+    {
+        if ($this->invitations->removeElement($invitation)) {
+            // set the owning side to null (unless already changed)
+            if ($invitation->getSocialnet() === $this) {
+                $invitation->setSocialnet(null);
+            }
+        }
 
         return $this;
     }
