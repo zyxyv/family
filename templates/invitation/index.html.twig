@@ -3,10 +3,19 @@
 {% block title %}Invitation{% endblock %}
 
 {% block main %}
-<div class="container-fluid col-xs-12 newSection content white">
+    <div class="container d-flex justify-content-center">
+        {% for invitation in invitations %}
+            <div class="col-xs-4 col-lg-3 text-center">
+                <p class="mini">{% trans %}Te han invitado a:{% endtrans %}</p>
+                <a onclick="invitationAcept({{ invitation.getSocialnet.id }})" href=""><img class="logoSmall" src="{{ asset('img/socialnet/') }}{{ invitation.getSocialnet.image }}" alt="logoSocial">
+                    <p>{{ invitation.getSocialnet.name }}</p></a>
+            </div>
+        {% endfor %}
+    </div>
+<div class="container-fluid col-xs-12 content">
     <div class="row">
     <div class="container col-xs-12 col-lg-6 d-flex justify-content-center">
-        <img class="detail" src="{{ asset('img/app/tucan.png') }}">
+        <img height="80%" width="80%" class="detail" src="{{ asset('img/app/tucan.png') }}">
     </div>
     <div class="container col-xs-12 col-lg-6 d-flex justify-content-center center justify-align-item flex-column">
         <p class="family content-text">{% trans %}Invita a todas las personas que quieras añadir a tu Socialnet{% endtrans %}</p>
@@ -24,4 +33,5 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     <script src="{{ asset('js/invitation.js') }}"></script>
+    <script src="{{ asset('js/socialnet.js') }}"></script>
 {% endblock %}

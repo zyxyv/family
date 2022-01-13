@@ -21,6 +21,7 @@ class InvitationController extends AbstractController
     {
         if($this->getUser()) {
             $user = $this->getUser();
+            $invitations = $em->getRepository(Invitation::class)->findBy(array('email' => $user->getEmail()));
             if($user->getActive())
             {
                 $social = $em->getRepository(Socialnet::class)->find($user->getActive());
@@ -29,7 +30,8 @@ class InvitationController extends AbstractController
             }
             return $this->render('invitation/index.html.twig', [
                 'user' => $user,
-                'social' => $social
+                'social' => $social,
+                'invitations' => $invitations
             ]);
         } else {
             return $this->redirect('login');
@@ -39,7 +41,7 @@ class InvitationController extends AbstractController
     /**
      * @Route("/passInvitation", options={"expose"=true}, name="passInvitation")
      */
-    public function getSocial(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
+    public function passInvitation(Request $request, EntityManagerInterface $em, MailerInterface $mailer)
     {
         if($request->isXmlHttpRequest())
         {
@@ -61,9 +63,6 @@ class InvitationController extends AbstractController
 
                 $mailer->send($email);*/
             }
-
-
-
             return new JsonResponse(['resp' => $datos]);
         } else {
             throw new \Exception('¿Estas tratando de hackearme');
