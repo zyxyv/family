@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 body {background-color: #343a40;color: #f5f5f5;}
-a{text-decoration: none;}
+a{text-decoration: none;color:inherit;}
+a:hover{color:#f58400;}
 ul,li {list-style: none;}
 /*
 BOTONES

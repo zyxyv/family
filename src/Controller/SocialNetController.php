@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class SocialNetController extends AbstractController
 {
     #[Route('/', name: 'social_net')]
-    public function index(EntityManagerInterface $em): Response
+    public function index(EntityManagerInterface $em, Request $request): Response
     {
         if($user = $this->getUser())
         {
