@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Socialnet;
+use App\Entity\Invitation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,8 @@ class SocialNetController extends AbstractController
         if($user = $this->getUser())
         {
             $sn = $user->getSocialnets();
-            if(count($sn) <= 0)
+            $invitations = $em->getRepository(Invitation::class)->findBy(array('email' => $user->getEmail()));
+            if(count($sn) <= 0 && count($invitations) <= 0)
             {
                 return $this->redirectToRoute('socialnet_base_new');
             } else {
@@ -33,7 +35,8 @@ class SocialNetController extends AbstractController
                 return $this->render('social_net/index.html.twig', [
                     'social' => $social,
                     'user' => $user,
-                    'socials' => $socials
+                    'socials' => $socials,
+                    'invitations' => $invitations
                 ]);
             }
         } else {
@@ -53,6 +56,27 @@ class SocialNetController extends AbstractController
             $user->setActive($id);
             $entityManager->flush();
             return new JsonResponse(['resp' => 'Todo Ok']);
+        } else {
+            throw new \Exception('¿Estas tratando de hackearme');
+        }
+    }
+    /**
+     *
+     * @Route("/invitationAcept", options={"expose"=true}, name="invitationAcept")
+     */
+    public function invitationAcept(Request $request, EntityManagerInterface $entityManager)
+    {
+        if($request->isXmlHttpRequest())
+        {
+            $id = $request->request->get('id');
+            $user = $this->getUser();
+            $socialnet = $entityManager->getRepository(Socialnet::class)->find($id);
+            $invitation = $entityManager->getRepository(Invitation::class)->findOneBy(array('socialnet' => $socialnet, 'email' => $user->getEmail()));
+            $user->setActive($id);
+            $user->addSocialnet($socialnet);
+            $entityManager->remove($invitation);
+            $entityManager->flush();
+            return new JsonResponse(['resp' => $invitation->getEmail()]);
         } else {
             throw new \Exception('¿Estas tratando de hackearme');
         }

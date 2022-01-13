@@ -13,4 +13,19 @@ function getSocial(id) {
   })
 }
 
+function invitationAcept(id) {
+  var Ruta = Routing.generate('invitationAcept');
+  var RutaRetorno = Routing.generate('default');
+  $.ajax({
+    type: "POST",
+    url: Ruta,
+    data: ({id: id}),
+    async: true,
+    dataType: "json",
+    success: function (data) {
+      console.log(data);
+    }
+  })
+}
+
 

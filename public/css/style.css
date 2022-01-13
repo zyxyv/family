@@ -22,16 +22,20 @@ INPUTS
 .inputGroup input{margin: .5rem 0;}
 .inputGroup button{border-radius: 0 16px 16px 0;}
 /*
+TEXTOS
+ */
+.low {text-transform:lowercase;}
+.upper {text-transform:uppercase;}
+.orange {color:#f58400;}
+.white {color:#e0e0e0;}
+.mini{font-size: 0.8rem;}
+/*
 ESPECIFICOS
  */
 .family {
     font-weight: bold;
     font-family: 'Satisfy', sans-serif;
 }
-.low {text-transform:lowercase;}
-.upper {text-transform:uppercase;}
-.orange {color:#f58400;}
-.white {color:#e0e0e0;}
 .transp {
     background-color:transparent;
     border:none
@@ -40,6 +44,12 @@ ESPECIFICOS
     width: 128px;
     height: 128px;
     border-radius: 8px;
+}
+.logoSmall {
+    width: 72px;
+    height: 72px;
+    border-radius: 6px;
+    opacity: 0.5;
 }
 .newSection {margin-top: 1.5rem;}
 .infinite {
@@ -56,6 +66,9 @@ ESPECIFICOS
     color: #f58400;
     font-weight: bold;
     background-color: #e0e0e0;
+}
+.infinite li a {
+    color: #f58400;
 }
 .content {background-color:#e0e0e0;color: #343a40;}
 .content-text {font-size: 1.25em;}
