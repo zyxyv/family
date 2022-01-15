@@ -59,6 +59,7 @@ ESPECIFICOS
     align-content: center;
     overflow-x: auto;
 }
+.infinite ul {display:flex;}
 .infinite::-webkit-scrollbar {background-color: #f58400;height: 4px;}
 .infinite li {
     min-width: 200px;
@@ -73,3 +74,5 @@ ESPECIFICOS
 }
 .content {background-color:#e0e0e0;color:#343a40;}
 .content-text {font-size: 1.25em;}
+.cromo{border:1px solid #f58400;border-radius:6px}
+.cromo-name{font-weight: 700;font-size:1.1rem;border-bottom: 2px solid #f58400 }

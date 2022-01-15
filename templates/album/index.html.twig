@@ -1,0 +1,24 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}Family Albums{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1 class="upper">{% trans %}Your albums:{% endtrans %}</h1>
+        <div class="row col-xs-12 newSection">
+            {% for album in albums %}
+                <div class="cromo col-xs-12 col-md-6 col-lg-4">
+                    <div class="cromo-name text-center">
+                        {{ album.name }}
+                    </div>
+                    <div class="cromo-content text-justify">
+                        {{ album.description }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="link text-center">
+            <a href="">{% trans %}Create new album{% endtrans %}</a>
+        </div>
+    </div>
+{% endblock %}
