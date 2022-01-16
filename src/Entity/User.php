@@ -48,10 +48,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'smallint', nullable: true)]
     private $active;
 
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Album::class, orphanRemoval: true)]
+    private $albums;
+
     public function __construct()
     {
         $this->socialnets = new ArrayCollection();
         $this->socials = new ArrayCollection();
+        $this->albums = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -207,6 +211,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setActive(?int $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Album[]
+     */
+    public function getAlbums(): Collection
+    {
+        return $this->albums;
+    }
+
+    public function addAlbum(Album $album): self
+    {
+        if (!$this->albums->contains($album)) {
+            $this->albums[] = $album;
+            $album->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(Album $album): self
+    {
+        if ($this->albums->removeElement($album)) {
+            // set the owning side to null (unless already changed)
+            if ($album->getOwner() === $this) {
+                $album->setOwner(null);
+            }
+        }
 
         return $this;
     }

@@ -74,5 +74,7 @@ ESPECIFICOS
 }
 .content {background-color:#e0e0e0;color:#343a40;}
 .content-text {font-size: 1.25em;}
-.cromo{border:1px solid #f58400;border-radius:6px}
-.cromo-name{font-weight: 700;font-size:1.1rem;border-bottom: 2px solid #f58400 }
+.cromo{background-color: #000000; border: 1px solid #f58400; border-radius: 16px;}
+.cromo-content{padding: 0.7rem;}
+.cromo-name{font-weight: 700;font-size:1.1rem;border-bottom: 2px solid #f58400; border-top: 2px solid #f58400;padding-top:1rem;}
+.cromo-image img{position:relative;width:4rem;height:4rem;left:42%;top:1.2rem;border-radius:50px;border:2px solid #f58400;}

@@ -7,7 +7,10 @@
         <h1 class="upper">{% trans %}Your albums:{% endtrans %}</h1>
         <div class="row col-xs-12 newSection">
             {% for album in albums %}
-                <div class="cromo col-xs-12 col-md-6 col-lg-4">
+                <div class="cromo col-xs-12 d-flex-column col-md-6 col-lg-4">
+                    <div class="cromo-image">
+                        <img src="{{ asset('img/albums/') }}{{ album.image }}" alt="logoAlbum">
+                    </div>
                     <div class="cromo-name text-center">
                         {{ album.name }}
                     </div>
@@ -18,7 +21,7 @@
             {% endfor %}
         </div>
         <div class="link text-center">
-            <a href="">{% trans %}Create new album{% endtrans %}</a>
+            <a href="{{ path('album_base_new') }}">{% trans %}Create new album{% endtrans %}</a>
         </div>
     </div>
 {% endblock %}

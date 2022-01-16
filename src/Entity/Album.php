@@ -26,6 +26,13 @@ class Album
     #[ORM\Column(type: 'string', length: 12, nullable: true)]
     private $date;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $image;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'albums')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $owner;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +82,30 @@ class Album
     public function setDate(?string $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }

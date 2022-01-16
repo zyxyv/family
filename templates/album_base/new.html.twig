@@ -1,0 +1,14 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}New Album{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row col-xs-12 text-center">
+            <h1>Create new Album</h1>
+            {{ include('album_base/_form.html.twig') }}
+
+            <a href="{{ path('album') }}"><button class="btn btn-primary boton">{% trans %}Return{% endtrans %}</button></a>
+        </div>
+    </div>
+{% endblock %}
