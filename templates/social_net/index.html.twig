@@ -8,7 +8,7 @@
     {% for social in socials %}
         <div class="clicable">
             <button class="transp" onclick="getSocial({{ social.id }})">
-                <img class="logoMedium" src="{{ asset('img/socialnet/') }}{{ social.image }}" alt="socialnet">
+                <img class="logoMedium" src="{{ asset('img/socialnet/') }}{{ social.name }}.png" alt="socialnet">
             </button>
             <p class="nameSocial family center upper">{{ social.name }}</p>
         </div>
@@ -18,7 +18,7 @@
     {% for invitation in invitations %}
         <div class="col-xs-4 col-lg-3 text-center">
         <p class="mini">{% trans %}Te han invitado a:{% endtrans %}</p>
-        <a onclick="invitationAcept({{ invitation.getSocialnet.id }})" href=""><img class="logoSmall" src="{{ asset('img/socialnet/') }}{{ invitation.getSocialnet.image }}" alt="logoSocial">
+        <a onclick="invitationAcept({{ invitation.getSocialnet.id }})" href=""><img class="logoSmall" src="{{ asset('img/socialnet/') }}{{ invitation.getSocialnet.name }}" alt="logoSocial">
         <p>{{ invitation.getSocialnet.name }}</p></a>
         </div>
     {% endfor %}

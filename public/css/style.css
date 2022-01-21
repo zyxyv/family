@@ -6,12 +6,7 @@ ul,li {list-style: none;}
 /*
 BOTONES
 */
-.boton {
-    background-color: #6c757d;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    border: none;
-}
+.boton {background-color:#6c757d;margin-top:0.5rem;margin-bottom: 0.5rem;border: none;}
 .boton:hover,.boton:active{background-color: #f58400;}
 /*
 POSICIONES
@@ -33,48 +28,21 @@ TEXTOS
 /*
 ESPECIFICOS
  */
-.family {
-    font-weight: bold;
-    font-family: 'Satisfy', sans-serif;
-}
-.transp {
-    background-color:transparent;
-    border:none
-}
-.logoMedium {
-    width: 128px;
-    height: 128px;
-    border-radius: 8px;
-}
-.logoSmall {
-    width: 72px;
-    height: 72px;
-    border-radius: 6px;
-    opacity: 0.5;
-}
+.family {font-weight:bold;font-family: 'Satisfy', sans-serif;}
+.transp {background-color:transparent;border:none;}
+.logoMedium {width: 128px;height:128px;border-radius:8px;}
+.logoSmall {width:72px;height:72px;border-radius: 6px;opacity: 0.5;}
 .newSection {margin-top: 1.5rem;}
-.infinite {
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
-    overflow-x: auto;
-}
+.infinite{display: flex;justify-content: space-around;align-content: center;overflow-x: auto;}
 .infinite ul {display:flex;}
 .infinite::-webkit-scrollbar {background-color: #f58400;height: 4px;}
-.infinite li {
-    min-width: 200px;
-    border: 1px solid #f58400;
-    text-align: center;
-    color: #f58400;
-    font-weight: bold;
-    background-color: #e0e0e0;
-}
-.infinite li a {
-    color: #f58400;
-}
+.infinite li {min-width: 200px;border: 1px solid #f58400;text-align: center;color: #f58400;font-weight: bold;background-color: #e0e0e0;}
+.infinite li a {color: #f58400;}
 .content {background-color:#e0e0e0;color:#343a40;}
 .content-text {font-size: 1.25em;}
 .cromo{background-color: #000000; border: 1px solid #f58400; border-radius: 16px;}
 .cromo-content{padding: 0.7rem;}
 .cromo-name{font-weight: 700;font-size:1.1rem;border-bottom: 2px solid #f58400; border-top: 2px solid #f58400;padding-top:1rem;}
-.cromo-image img{position:relative;width:4rem;height:4rem;left:42%;top:1.2rem;border-radius:50px;border:2px solid #f58400;}
+.cromo-image{display:flex;justify-content:space-between;}
+.cromo-image div{text-align:center;}
+.cromo-img{position:relative;width:4rem;height:4rem;top:1.2rem;border-radius:50px;border:2px solid #f58400;}

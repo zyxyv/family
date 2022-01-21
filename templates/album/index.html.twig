@@ -8,8 +8,19 @@
         <div class="row col-xs-12 newSection">
             {% for album in albums %}
                 <div class="cromo col-xs-12 d-flex-column col-md-6 col-lg-4">
-                    <div class="cromo-image">
-                        <img src="{{ asset('img/albums/') }}{{ album.image }}" alt="logoAlbum">
+                    <div class="row cromo-image col-xs-12">
+                        <div class="col d-flex justify-content-start align-items-center">
+                        {% if album.owner.id == user.id %}
+                            <a href="{{ path('album_base_edit', {'id': album.id}) }}">
+                                <img width="32px" height="32px" src="{{ asset('img/app/config.png') }}" alt="config">
+                            </a>
+                        {% endif %}
+                        </div>
+                        <div class="col">
+                            <img class="cromo-img" src="{{ asset('img/albums/') }}{{ album.name }}.png" alt="logoAlbum">
+                        </div>
+                        <div class="col">
+                        </div>
                     </div>
                     <div class="cromo-name text-center">
                         {{ album.name }}

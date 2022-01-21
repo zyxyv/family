@@ -52,10 +52,15 @@ class SocialnetBaseController extends AbstractController
     {
         $user = $this->getUser();
 
-        if($_FILES && $_FILES['image']['error'] == 0 && $_POST['name'])
+        if($_POST)
         {
-            $format = array('jpg', 'jpeg', 'png', 'gif', 'webp');
-            $flag = EditionFile::edit($_FILES['image'],$format,$_POST['name'],'img/socialnet/',$_POST['old'],'.png',1000000);
+            if($_FILES && $_FILES['image']['error'] == 0 && $_POST['name'] != '')
+            {
+                $format = array('jpg', 'jpeg', 'png', 'gif', 'webp');
+                $flag = EditionFile::edit($_FILES['image'],$format,$_POST['name'],'img/socialnet/',$_POST['old'],'.png',1000000);
+            } else {
+                EditionFile::rename_file($_POST['old'],$_POST['name'],'img/socialnet/','.png');
+            }
             $socialnet->setName($_POST['name']);
             $entityManager->flush();
         }

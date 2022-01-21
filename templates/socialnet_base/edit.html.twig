@@ -7,7 +7,7 @@
         <h1>{% trans %}Edit{% endtrans %} {{ social.name }} Socialnet</h1>
         <form action="" method="post" enctype="multipart/form-data">
             <input type="hidden" name="old" value="{{ social.name }}.png">
-            <label for="firstname">{% trans %}Socialnet name{% endtrans %}</label><br>
+            <label for="name">{% trans %}Socialnet name{% endtrans %}</label><br>
             <input type="text" name="name" class="form-control" value="{{ social.name }}" pattern="[a-zA-Z áéíóúÁÉÍÓÚ]{2,}" required><br>
             <img src="{{ asset('img/socialnet/') }}{{ social.name }}.png" width="48px" height="48px"><br>
             <label for="avatar">{% trans %}New Image{% endtrans %}</label><br>

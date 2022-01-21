@@ -85,4 +85,12 @@ class EditionFile
         }
         return $flag;
     }
+
+    public static function rename_file($old, $new, $path, $ext)
+    {
+        if(file_exists($path.$old))
+        {
+            rename($path.$old, $path.$new.$ext);
+        }
+    }
 }

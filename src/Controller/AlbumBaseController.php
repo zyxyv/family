@@ -61,18 +61,30 @@ class AlbumBaseController extends AbstractController
     #[Route('/{id}/edit', name: 'album_base_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(AlbumType::class, $album);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($user = $this->getUser())
+        {
+            $social = $entityManager->getRepository(Socialnet::class)->find($user->getActive());
+        } else {
+            return $this->redirect('login');
+        }
+        if($_POST)
+        {
+            if($_FILES && $_FILES['image']['error'] == 0 && $_POST['name'])
+            {
+                $format = array('jpg', 'jpeg', 'png', 'gif', 'webp');
+                $flag = EditionFile::edit($_FILES['image'],$format,$_POST['name'],'img/albums/',$_POST['old'],'.png',1000000);
+            } else {
+                EditionFile::rename_file($_POST['old'],$_POST['name'],'img/albums/','.png');
+            }
+            $album->setDescription($_POST['description']);
+            $album->setName($_POST['name']);
             $entityManager->flush();
-
-            return $this->redirectToRoute('album_base_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('album_base/edit.html.twig', [
             'album' => $album,
-            'form' => $form,
+            'user' => $user,
+            'social' => $social
         ]);
     }
 
@@ -84,6 +96,6 @@ class AlbumBaseController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('album_base_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('album', [], Response::HTTP_SEE_OTHER);
     }
 }

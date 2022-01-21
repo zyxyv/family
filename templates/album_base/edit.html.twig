@@ -1,13 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'withHeader.html.twig' %}
 
-{% block title %}Edit Album{% endblock %}
+{% block title %}Edit Socialnet{% endblock %}
 
-{% block body %}
-    <h1>Edit Album</h1>
-
-    {{ include('album_base/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('album_base_index') }}">back to list</a>
-
-    {{ include('album_base/_delete_form.html.twig') }}
+{% block main %}
+    <div class="container col-6 d-flex align-items-center justify-content-center flex-column">
+        <h1>{% trans %}Edit{% endtrans %} {{ album.name }}</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="old" value="{{ album.name }}.png">
+            <label for="name">{% trans %}Album name{% endtrans %}</label><br>
+            <input type="text" name="name" class="form-control" value="{{ album.name }}" pattern="[a-zA-Z áéíóúÁÉÍÓÚ]{2,}" required><br>
+            <label for="name">{% trans %}Album description{% endtrans %}</label><br>
+            <textarea name="description" class="form-control" pattern="[a-zA-Z áéíóúÁÉÍÓÚ]{2,}" required>{{ album.description }}</textarea><br>
+            <img src="{{ asset('img/albums/') }}{{ album.name }}.png" width="48px" height="48px"><br>
+            <label for="image">{% trans %}New Image{% endtrans %}</label><br>
+            <input type="file" name="image"><br>
+            <div class="center">
+                <button type="submit" class="btn btn-primary boton">Actualizar</button>
+            </div>
+        </form>
+        {{ include('album_base/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
