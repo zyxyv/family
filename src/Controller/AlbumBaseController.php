@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Entity\Socialnet;
 use App\Form\AlbumType;
-use App\Repository\AlbumRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,10 +50,20 @@ class AlbumBaseController extends AbstractController
     }
 
     #[Route('/{id}', name: 'album_base_show', methods: ['GET'])]
-    public function show(Album $album): Response
+    public function show(Album $album, EntityManagerInterface $entityManager): Response
     {
+        if($user = $this->getUser())
+        {
+            $social = $entityManager->getRepository(Socialnet::class)->find($user->getActive());
+            $photos = $album->getPhotos();
+        } else {
+            return $this->redirect('login');
+        }
         return $this->render('album_base/show.html.twig', [
             'album' => $album,
+            'user' => $user,
+            'social' => $social,
+            'photos' => $photos
         ]);
     }
 
@@ -84,7 +93,8 @@ class AlbumBaseController extends AbstractController
         return $this->renderForm('album_base/edit.html.twig', [
             'album' => $album,
             'user' => $user,
-            'social' => $social
+            'social' => $social,
+            'photos' => $album->getPhotos(),
         ]);
     }
 
@@ -98,4 +108,21 @@ class AlbumBaseController extends AbstractController
 
         return $this->redirectToRoute('album', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/photo/{id}', name: 'photo_add', methods: ['GET'])]
+    public function photoAdd(Album $album, EntityManagerInterface $entityManager): Response
+    {
+        if($user = $this->getUser())
+        {
+            $social = $entityManager->getRepository(Socialnet::class)->find($user->getActive());
+        } else {
+            return $this->redirect('login');
+        }
+        return $this->render('album_base/photosUpload.html.twig', [
+            'album' => $album,
+            'user' => $user,
+            'social' => $social
+        ]);
+    }
 }
+

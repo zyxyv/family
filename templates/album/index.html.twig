@@ -17,7 +17,9 @@
                         {% endif %}
                         </div>
                         <div class="col">
+                            <a href="{{ path('album_base_show', {'id': album.id}) }}">
                             <img class="cromo-img" src="{{ asset('img/albums/') }}{{ album.name }}.png" alt="logoAlbum">
+                            </a>
                         </div>
                         <div class="col">
                         </div>
@@ -31,8 +33,8 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="link text-center">
-            <a href="{{ path('album_base_new') }}">{% trans %}Create new album{% endtrans %}</a>
+        <div class="container d-flex justify-content-center">
+            <a class="link" href="{{ path('album_base_new') }}">{% trans %}Create new album{% endtrans %}</a>
         </div>
     </div>
 {% endblock %}

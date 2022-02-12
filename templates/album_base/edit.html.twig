@@ -1,6 +1,9 @@
 {% extends 'withHeader.html.twig' %}
 
 {% block title %}Edit Socialnet{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
+{% endblock %}
 
 {% block main %}
     <div class="container col-6 d-flex align-items-center justify-content-center flex-column">
@@ -20,4 +23,24 @@
         </form>
         {{ include('album_base/_delete_form.html.twig') }}
     </div>
+    <h3 class="text-center newSection">{% trans %}Here you can delete the photos in this album.{% endtrans %}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="minis">
+                {% for photo in photos %}
+                    <div id='cromo{{ photo.id }}' class='photoprev'>
+                        <div class="close">
+                            <a class='deletePhoto' onclick='deletePhoto("{{ photo.id }}")'>X</a>
+                        </div>
+                        <img src='{{ asset('img/pictures/') }}{{ photo.getMediaPhoto() }}' alt='img'>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('js/photos.js') }}"></script>
 {% endblock %}

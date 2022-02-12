@@ -23,8 +23,8 @@
         </div>
     {% endfor %}
     </div>
-    <div class="link text-center newSection">
-        <a href="{{ path('socialnet_base_new') }}">{% trans %}Add a new Socialnet{% endtrans %}</a>
+    <div class="container d-flex justify-content-center newSection">
+        <a class="link text-center" href="{{ path('socialnet_base_new') }}">{% trans %}Add a new Socialnet{% endtrans %}</a>
     </div>
 {% endblock %}
 {% block javascripts %}

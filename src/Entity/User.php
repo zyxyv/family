@@ -48,14 +48,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'smallint', nullable: true)]
     private $active;
 
-    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Album::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'owner_album', targetEntity: Album::class, orphanRemoval: true)]
     private $albums;
+
+    #[ORM\OneToMany(mappedBy: 'owner_photo', targetEntity: Photo::class, orphanRemoval: true)]
+    private $photos;
+
 
     public function __construct()
     {
         $this->socialnets = new ArrayCollection();
         $this->socials = new ArrayCollection();
         $this->albums = new ArrayCollection();
+        $this->photos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,4 +249,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Photo[]
+     */
+    public function getPhotos(): Collection
+    {
+        return $this->photos;
+    }
+
+    public function addPhoto(Photo $photo): self
+    {
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setOwnerPhoto($this);
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photo $photo): self
+    {
+        if ($this->photos->removeElement($photo)) {
+            // set the owning side to null (unless already changed)
+            if ($photo->getOwnerPhoto() === $this) {
+                $photo->setOwnerPhoto(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
