@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form method="post" action="#" enctype="multipart/form-data">
+                <div data-id="{{ album.id }}" class="card">
+                    <div class="minis"></div>
+                    <div class="card-body d-flex flex-column">
+                        <p class="text-center orange">{% trans %}Arrastre o seleccione las imagenes o videos que desee subir{% endtrans %}</p>
+                        <div class="form-group all">
+                            <input multiple="true" type="file" class="form-control-file" name="image" id="image">
+                        </div>
+                        <input type="button" class="btn btn-primary boton upload" value="Subir">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

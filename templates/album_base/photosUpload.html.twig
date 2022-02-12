@@ -1,0 +1,15 @@
+{% extends 'withHeader.html.twig' %}
+
+{% block title %}Album{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/photos.css') }}">
+{% endblock %}
+
+{% block main %}
+   {{ include ('album_base/photosDragDrop.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('js/photos.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+.minis{width:100%;display:flex;flex-wrap:wrap;}
+.minis img{width:5rem;height:auto}
+.card-body{height:15rem;}
+.all{width:100%;height:100%;}
+.all input{height:100%;width:100%;border: 1px solid #cccccc;}
+.photoprev{width:8.3%;background-color:transparent;text-align:center;cursor:pointer;margin:.1rem;display:flex;flex-direction:column;align-content:center;justify-content:center;align-items:center;}
+.deletePhoto{background-color:red;padding:.1rem .3rem;font-weight:700;border-radius:50%;}
+.close{position:absolute;}
