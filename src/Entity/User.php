@@ -54,6 +54,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner_photo', targetEntity: Photo::class, orphanRemoval: true)]
     private $photos;
 
+    #[ORM\OneToMany(mappedBy: 'post_user', targetEntity: Post::class)]
+    private $posts;
+
 
     public function __construct()
     {
@@ -61,6 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->socials = new ArrayCollection();
         $this->albums = new ArrayCollection();
         $this->photos = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +278,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($photo->getOwnerPhoto() === $this) {
                 $photo->setOwnerPhoto(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setPostUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getPostUser() === $this) {
+                $post->setPostUser(null);
             }
         }
 

@@ -30,11 +30,15 @@ class Socialnet
     #[ORM\OneToMany(mappedBy: 'socialnet', targetEntity: Album::class, orphanRemoval: true)]
     private $albums;
 
+    #[ORM\OneToMany(mappedBy: 'socialnet', targetEntity: Post::class)]
+    private $posts;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
         $this->invitations = new ArrayCollection();
         $this->albums = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,6 +148,36 @@ class Socialnet
             // set the owning side to null (unless already changed)
             if ($album->getSocialnet() === $this) {
                 $album->setSocialnet(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setSocialnet($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->removeElement($post)) {
+            // set the owning side to null (unless already changed)
+            if ($post->getSocialnet() === $this) {
+                $post->setSocialnet(null);
             }
         }
 
