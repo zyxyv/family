@@ -7,7 +7,8 @@ ul,li {list-style: none;}
 BOTONES
 */
 .boton {background-color:#6c757d;margin-top:0.5rem;margin-bottom: 0.5rem;border: none;}
-.boton:hover,.boton:active{background-color: #f58400;}
+.boton:hover{background-color: #f58400;}
+.boton:focus,.boton:active{background-color:#f58400;box-shadow:none;}
 /*
 POSICIONES
  */
@@ -52,3 +53,4 @@ ESPECIFICOS
 .cromo-image{display:flex;justify-content:space-between;}
 .cromo-image div{text-align:center;}
 .cromo-img{position:relative;width:4rem;height:4rem;top:1.2rem;border-radius:50px;border:2px solid #f58400;}
+#post_content{width: 100%;}

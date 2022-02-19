@@ -1,7 +1,30 @@
 {% extends 'withHeader.html.twig' %}
 
 {% block title %}Family Dashboard{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/post.css') }}">
+{% endblock %}
 {% block main %}
-
+    <section id="newPost">
+        <div class="container d-flex justify-content-center">
+            <button id="newPostButton" class="btn btn-primary boton">New Post</button>
+            <a href=""><button class="btn btn-primary boton">New Post</button></a>
+        </div>
+        <div id="newPostForm" class="container">
+            <div class="col-xs-12 d-flex justify-content-center">
+                {{ form_start(form) }}
+                {{ form_label(form.content) }}<br>
+                {{ form_widget(form.content) }}<br>
+                <div class="center">
+                    <button type="submit" class="btn btn-primary boton send">{{ button_label|default('Save') }}</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/gre/jquery.gre.js') }}"></script>
+    <script src="{{ asset('js/post.js') }}"></script>
 {% endblock %}
