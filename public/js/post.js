@@ -10,5 +10,6 @@ $(document).ready(function(){
     });
     $('#newPostButton').click(function(){
         $('#newPostForm').toggle();
+        console.log($('.frameBody').length);
     });
-})
+});

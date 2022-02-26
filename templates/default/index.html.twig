@@ -7,6 +7,11 @@
 {% endblock %}
 {% block main %}
     <section id="newPost">
+        <div class="container msg">
+            {% if msg['text'] %}
+                <div class="alert alert-{{ msg['type'] }}">{{ msg['text'] }}</div>
+            {% endif %}
+        </div>
         <div class="container d-flex justify-content-center">
             <button id="newPostButton" class="btn btn-primary boton">New Post</button>
             <a href=""><button class="btn btn-primary boton">New Post</button></a>
@@ -16,10 +21,48 @@
                 {{ form_start(form) }}
                 {{ form_label(form.content) }}<br>
                 {{ form_widget(form.content) }}<br>
+                {{ form_label(form.media) }}<br>
+                {{ form_widget(form.media) }}<br>
                 <div class="center">
                     <button type="submit" class="btn btn-primary boton send">{{ button_label|default('Save') }}</button>
                 </div>
                 {{ form_end(form) }}
+            </div>
+        </div>
+    </section>
+    <section id="carousel" class="col-xs-12">
+        <div class="container family">
+            <h2>{% trans %}Ùltimos post{% endtrans %}</h2>
+        </div>
+        <div class="container">
+            <div class="posts">
+                <div class="arrow-l">
+                    <img src="{{ asset('img/app/iz.svg') }}">
+                </div>
+                <article id="id1" class="order-1">
+                    <div style="background-color: blue;" class="post">
+                    </div>
+                </article>
+                <article id="id2" class="order-2">
+                    <div style="background-color: limegreen;" class="post col">
+
+                    </div>
+                </article>
+                <article id="id3" class="order-3">
+                    <div style="background-color: peru;" class="post">
+
+                    </div>
+                </article>
+                <article id="id4" class="order-4">
+                    <div style="background-color: bisque;" class="post">
+
+                    </div>
+                </article>
+                <article id="id5" class="order-5">
+                    <div style="background-color: hotpink;" class="post">
+
+                    </div>
+                </article>
             </div>
         </div>
     </section>

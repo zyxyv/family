@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class PostType extends AbstractType
 {
@@ -15,6 +17,25 @@ class PostType extends AbstractType
         $builder
             ->add('content', TextareaType::class, array(
                 'required' => false,
+            ))
+            ->add('media', FileType::class, array(
+                'label' => 'Image (only pictures files)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => array(
+                    new File(array(
+                        'maxSize' => '1024k',
+                        'mimeTypes' => array(
+                            'image/gif',
+                            'image/png',
+                            'image/jpeg',
+                            'image/jpg',
+                            'image/bmp',
+                            'image/webp'
+                        ),
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ))
+                )
             ))
         ;
     }
